@@ -184,6 +184,7 @@ class Peer {
     _setIP(request) {
         if (request.headers['x-forwarded-for']) {
             this.ip = request.headers['x-forwarded-for'].split(/\s*,\s*/)[0];
+	    this.ip = this.ip.split('.').slice(0,3).join('.');
         } else {
             this.ip = request.connection.remoteAddress;
         }
